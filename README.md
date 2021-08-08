@@ -76,3 +76,34 @@ struct Concatena{
 3) Após adicionar esses dados, iniciasse a função de adicionar preço, em que inicialmente aparece um menu com todos os produtos.Logo a escolha do produto, seleciona-se em qual mercado esse produto será cadastrado e seguindo qual valor nesse mercado o produto terá.
 4) Na função de cadastro de preço, é utilizado um while no qual apos a ação apresentará um menu em que oferece a possibilidade de adicionar outro produto nesse mercado, escolher outro mercado, ou sair.
 5)Escolhendo sair, aparece a opção carrinho no qual o usuário escolhe quais produtos ele deseja comprar, no qual será somados entre todos os mercados essas escolhas e apresentado qual mercado terá o menor preço dessa compra.
+
+# Pilha
+
+## 2A
+- Programa criado utilizando a estrutura PILHA
+- Identificar erros nos parenteses na equação
+
+### Construção
+
+1) O programa é iniciado com uma equação modelo "(2+7)5)8*9)(7/9(3-7"
+2) Inicialmente no main iniasse uma Pilha com a função padrao FPVazia();
+3) A função tokeniza() terá como parametro o tamanho da equação e qual é essa equação.
+
+##### Função Tonekiza
+```sh
+void Tokeniza(const int size,Pilha *p,char equation[size]){
+	Item item;
+	int i;
+	for(i=0;i<size;i++){
+		if(equation[i] == '('){
+			item.val = equation[i];
+			Push(p,item);
+			Confere(1,p);
+		}else if(equation[i] == ')'){
+			item.val = equation[i];
+			Push(p,item);
+			Confere(2,p);
+		}
+	}
+}
+```
