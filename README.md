@@ -65,7 +65,7 @@ struct Concatena{
 
 ### Construção
 1) Foi realizada a criação de 3 lista com structs diferentes
-2)Lista1 armazena uma string para adicionar o nome do produto, um int para o identificador e um outro para a quantidade
+2) Lista1 armazena uma string para adicionar o nome do produto, um int para o identificador e um outro para a quantidade
 3) Lista2 armazena uma string para adicionar o nome do mercado e um int para o identificador
 4) Lista3 adiciona a struct da lista1 com dados do produto, adiciona a struct da lista2 com os dados do produto e um float para adicionar o valor do produto;
 
@@ -132,3 +132,66 @@ Se o char recebido for '(', ocorre a soma de +1 na variável de verificação, c
 
 4) Não ocorrendo o erro de parenteses fechada sem uma aberta para anular, o iniciasse a função Valida, na qual identifica erro de parenteses abertas sem fechar, na qual verifica se a função valida esta em 0 ou >0.
 
+## 2B
+- Programa criado utilizando a estrutura PILHA
+- Criação de uma Pilha dinâmica A e a transferencia dessa pilha pra uma outro pilha B
+
+### Construção 
+
+1) Criasse duas pilhas no main, iniciando-as com a função padrao VPVazia()
+2) Logo apos, inicia a função de preenchimento da Pilha
+
+#### Função de preencher pilha
+
+```sh
+void PreenchePilha(Pilha *p){
+	p->qnt =0;
+	Item d;
+	int i;
+	srand(time(NULL));
+	int op = 0;
+
+	do{
+		printf("\nDigite um inteiro: ");
+		scanf(" %d",&d.val);
+		printf("\n");
+		Push(p,d);
+		p->qnt++;
+		PImprime(p);
+		printf("\n\n 1 - Adiciona Valor\n 2 - Sair ");
+		scanf("%d",&op);
+		//system ("cls||clear");
+	}while(op!=2);
+	system ("cls||clear");
+	printf("\n - Pilha A criada\n");
+}
+```
+
+3) Com a pilha A já criada, é inicada a funçaõ de transferencia para a pilha B, respeitando a ordem da pilha A
+
+#### Função de tranferência da Pilha
+```sh
+void TransferePilha(Pilha *p1,Pilha *p2){
+	
+	Bloco *aux ;
+	aux = p1->top;
+	
+	int i = 1;
+	while(p1->qnt > 0){
+		if(i==p1->qnt){
+			i=1;
+			Push(p2,aux->dado);
+			aux = p1->top;
+			p1->qnt--;
+		}
+		else{
+			aux = aux->prox;
+			i++;	
+		}
+	}
+	printf("\n\n - Pilha transferida de A para B");
+}
+```
+- Explicando TrasnferePilha()
+
+É criado um único auxiliar como assim passado no exercício. A struct da pilha contem uma variavel q informa o tamanho da pilha, no qual é utilizado para varrer toda extensão da mesma. A medida que ocorre o loop no for, ocorre o Push para a pilhaB, informando o ultimo valor da pilha A, no qual a cada loop decrementa -1 parando assim quando chegar em >0. Portanto é inserido na Pilha B do ultimo ate o primeiro valor da Pilha A, respeitando assim as posições de B.
