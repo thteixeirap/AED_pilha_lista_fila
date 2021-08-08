@@ -107,3 +107,28 @@ void Tokeniza(const int size,Pilha *p,char equation[size]){
 	}
 }
 ```
+- Explicando função Tokeniza
+
+O for irá varrer toda a equação, identidicando sempre quando houver uma abertura ou fechamento de parentes. Ocorrendo uma dessa situações, ocorre o empilhamentos dessa parenteses e a chamanda da função Confere.
+
+##### Função Confere
+
+```sh
+void Confere(int op,Pilha *p){
+	
+	if(p->cont.openClose <= 0 && op == 2){ //UM FECHADO SEM UM ABERTO DE PAR
+		printf("ERRO DE PARENTESES NA EQUACAO!\n");
+		exit(0);
+	}else if(p->cont.openClose > 0 && op == 1){ //ABERTURA QUANDO CONT ZERADO
+		p->cont.openClose++;
+	}else if(p->cont.openClose >= 0 && op == 2){//
+		p->cont.openClose--;
+	}	
+}
+```
+- Explicando função Confere
+
+Se o char recebido for '(', ocorre a soma de +1 na variável de verificação, caso char recebido for ')' ocorre o decremento de -1 nessa variavél. Caso verficado um ')' e, a variavel de verificação esteja em 0, significa o fechamento de uma parenteses em uma aberta para anular. O programa ja printa o erro e termina o programa. 
+
+4) Não ocorrendo o erro de parenteses fechada sem uma aberta para anular, o iniciasse a função Valida, na qual identifica erro de parenteses abertas sem fechar, na qual verifica se a função valida esta em 0 ou >0.
+
