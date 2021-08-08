@@ -196,7 +196,53 @@ void TransferePilha(Pilha *p1,Pilha *p2){
 
 É criado um único auxiliar como assim passado no exercício. A struct da pilha contem uma variavel q informa o tamanho da pilha, no qual é utilizado para varrer toda extensão da mesma. A medida que ocorre o loop no for, ocorre o Push para a pilhaB, informando o ultimo valor da pilha A, no qual a cada loop decrementa -1 parando assim quando chegar em >0. Portanto é inserido na Pilha B do ultimo ate o primeiro valor da Pilha A, respeitando assim as posições de B.
 
-## 4
+## 2C
+
+- Criação de lista MAXTAM 20 com números aleatórios
+- Utilizado a  função totiente de Euler para encontrar o valor de (phi)
+
+### Funcionalidade
+
+1) É criada no main uma pilha inciada com a função padrao FPVazia();
+2) É criada uma função para o preenchimento dessa pilha
+```sh
+void PreenchePilha(Pilha *p){
+	int i=0;
+	int num;
+	Item d;
+	while(i<MAXTAM){
+		num = rand() % 100;
+		if(num!=0) {
+			d.val= num;
+			PUSH(p,d);
+			i++;
+		}
+	}
+	printf("Lista Criada");
+}
+```
+- Explicando PreenchePilha
+Foi utilizada o recurso rand()%100 para adicionar os valores aleatórios (1 a 100), no qual sempre quando passar pela condição de não ser nulo irá adicionar esse valor na pilha e incrementar +1 na variavel de validação, ate ser maior que o MAXTAM e sair do loop, concluindo o preenchimento.
+
+3) Após essa criação, a pilha é enviada para a função totiente, na qual calculará o valor de phi para cada valor dessa pilha e exibirá na tela.
+
+#### Função matemática para obter (phi)
+```sh
+int gcd(int a, int b){
+    if (a == 0)
+        return b;
+    return gcd(b % a, a);
+}
+int phi( int n){
+     int result = 1;
+    int i;
+    for(i = 2; i < n; i++)
+        if (gcd(i, n) == 1)
+            result++;
+    return result;
+}
+```
+## 4)
 
 - Foi usado uma lógica de atendimento de pacientes em um hospital/clinica
 - É pensado na fila como um de atendimento normal, no qual a ordem é de chegada
