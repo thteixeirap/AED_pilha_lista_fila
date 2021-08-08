@@ -192,6 +192,83 @@ void TransferePilha(Pilha *p1,Pilha *p2){
 	printf("\n\n - Pilha transferida de A para B");
 }
 ```
-- Explicando TrasnferePilha()
+- Explicando TransferePilha()
 
 É criado um único auxiliar como assim passado no exercício. A struct da pilha contem uma variavel q informa o tamanho da pilha, no qual é utilizado para varrer toda extensão da mesma. A medida que ocorre o loop no for, ocorre o Push para a pilhaB, informando o ultimo valor da pilha A, no qual a cada loop decrementa -1 parando assim quando chegar em >0. Portanto é inserido na Pilha B do ultimo ate o primeiro valor da Pilha A, respeitando assim as posições de B.
+
+## 4
+
+- Foi usado uma lógica de atendimento de pacientes em um hospital/clinica
+- É pensado na fila como um de atendimento normal, no qual a ordem é de chegada
+- A lista foi utilizada para organizar o atendimento, sendo ele preferencial por idade
+- Após o processo de organização por idade, ocorre a incrementação do relatorio, no qual será feito e adicionado em um pilha
+- A Pilha foi pensada como um armazenamento de arquivos, em que o mais antigos ficam mais ao fundo.
+
+#### Structs importantes no processo 
+
+```sh
+struct Paciente{
+	char nome[20];
+	int idade;
+};
+```
+```sh
+struct Relatorio{
+	Paciente paciente;
+	char data[10];
+	char prontuario[100];
+};
+```
+
+## Funcionalidade
+1) Em um primeiro momento ocorre o cadastro de pacientes (nome e idade), sendo eles adicionados em uma fila
+2) Selecionando a opção de organizar idade, é chamada a função correspondente.
+
+```sh
+void OrganizaIdade(Fila *f,Lista *l){
+	
+	int idades[f->qtd];
+	idades[0] = f->first->prox->paciente.idade;
+	int menor;
+	Bloco *aux;
+	aux = f->first->prox->prox;
+	int i=1,j,k,p;
+	
+	while(aux != NULL){
+			
+		idades[i] = aux->paciente.idade;
+		k=i;
+		p=i-1;
+		for(j=i-1;j>=0;j--){	
+			if(idades[p] < idades[k]){
+				menor = idades[k];
+				idades[k] = idades[p];
+				idades[p] = menor;
+				k--;
+			}
+			p--;
+		}
+		aux = aux->prox;
+		i++;
+	}
+
+	for(i=0;i<f->qtd;i++){
+		aux = f->first->prox;
+		while(aux != NULL){
+			if(idades[i] == aux->paciente.idade){				
+				Linsere(l,aux->paciente);
+			}
+			aux = aux->prox;
+		}
+	}
+}
+```
+- Explicando OrganizaIdade
+
+É criado um vetor com a quantidade de pacientes informada na variavel contadora pertecente a struct da Fila. Dentro do While, é criado uma comparação para acrescentar a variavel idade dentro desse vetor. Essa adição é realizada sempre comparado os valores ja dentro do vetor com a nova informação adicionada, fazendo assim o maior valor(idade) ser sempre adicionado decrescente. 
+
+Ponto a ser mellhorado: É desejado realizar essa organização de idade sem o auxilio de um vetor e diretamente utilizando a lista com uma função comparativa. 
+
+Após o vetor pronto, é utilizado um for para adicionar esses pacientes na lista, que apresentará as idades dos pacientes de forma decrescente.
+
+3) Após a organização de idade, iniciasse o processo de atendimento, no qual sera adicionado a data e o prontuário desse paciente e em que assim sendo feito ira ser adicionado na Pilha de processos.
