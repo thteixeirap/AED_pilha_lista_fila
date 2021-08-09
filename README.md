@@ -1,3 +1,8 @@
+```bash
+Projeto feito com o DevC++ 5.11 / Windowns 10 64x
+```
+
+
 #                      LISTA|PILHA|FILHA
 
 
