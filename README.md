@@ -1,6 +1,15 @@
 ```bash
 Projeto feito com o DevC++ 5.11 / Windowns 10 64x
 ```
+```bash
+  ./Trabalho_AED/
+  ./make clean
+  ./make
+  ./make run
+```
+```bash
+ gcc version 9.2.0
+```
 
 
 #                      LISTA|PILHA|FILHA
